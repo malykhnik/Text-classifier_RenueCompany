@@ -18,11 +18,18 @@ public class Main {
     public static void main(String[] args) {
         FileService fileService = new FileServiceImpl();
         Scanner scanner = new Scanner(System.in);
-        String fileData = scanner.nextLine();
-        String inputFile = scanner.nextLine();
+//        String fileData = scanner.nextLine();
+//        String inputFile = scanner.nextLine();
+
+        String fileData = "path-to-csv.csv";
+        String inputFile = "input-path-to-file.txt";
 
         JsonAnswer jsonAnswer = new JsonAnswer();
         long startTime = System.currentTimeMillis();
+
+        if (fileData.isEmpty() || inputFile.isEmpty()) {
+            throw new RuntimeException("fileData name or inputFile name is Empty!");
+        }
 
         List<FileInfo> csv = fileService.readCsv("C:/Users/shere/IdeaProjects/TestTask2_Renue/src/main/resources/data-files/" + fileData);
         List<String> queries = fileService.readQueries("C:/Users/shere/IdeaProjects/TestTask2_Renue/src/main/resources/input-files/" + inputFile);

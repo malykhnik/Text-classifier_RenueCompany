@@ -25,10 +25,13 @@ public class FileServiceImpl implements FileService {
             String[] line;
             while ((line = reader.readNext())!= null) {
                 String[] parts = line[0].split("\\|");
+                if (parts.length < 3) {
+                    throw new RuntimeException("Wrong file.csv format!");
+                }
                 files.add(new FileInfo(parts[0].trim(), parts[1].trim(), parts[2].trim()));
             }
         } catch (IOException | CsvValidationException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can not open path-to-csv.csv");
         }
         return files;
     }
@@ -42,7 +45,7 @@ public class FileServiceImpl implements FileService {
                 lines.add(line);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Can not open input-path-to-file.txt");
         }
         return lines;
     }
