@@ -23,12 +23,12 @@ public class FileServiceImpl implements FileService {
             while ((line = reader.readLine())!= null) {
                 String[] parts = line.split("\\|");
                 if (parts.length < 3) {
-                    throw new RuntimeException("Wrong file.csv format!");
+                    throw new IllegalArgumentException("Wrong test.csv format!");
                 }
                 files.add(new FileInfo(parts[0].trim(), parts[1].trim(), parts[2].trim()));
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can not open path-to-csv.csv");
+            throw new RuntimeException("Can not open test.csv");
         }
         if (files.isEmpty()) {
             throw new RuntimeException("test.csv is empty!!");
@@ -45,19 +45,19 @@ public class FileServiceImpl implements FileService {
                 lines.add(line);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Can not open input-path-to-file.txt");
+            throw new RuntimeException("Can not open input1.txt");
         }
 
         if (lines.isEmpty()) {
-            throw new RuntimeException("input.txt is empty!!");
+            throw new RuntimeException("input1.txt is empty!!");
         }
         return lines;
     }
 
     @Override
-    public void writeParsedInfo(JsonAnswer jsonAnswer) {
+    public void writeParsedInfo(JsonAnswer jsonAnswer, String filename) {
         try {
-            Path filePath = Path.of("C:/Users/shere/IdeaProjects/TestTask2_Renue/temp/result1.json");
+            Path filePath = Path.of(filename);
             if (!Files.exists(filePath)) {
                 Files.createFile(filePath);
             }
