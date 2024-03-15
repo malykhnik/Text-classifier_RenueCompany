@@ -1,28 +1,20 @@
 package org.malykhnik;
 
-import org.malykhnik.dto.ResultDto;
 import org.malykhnik.entity.FileInfo;
 import org.malykhnik.entity.JsonAnswer;
-import org.malykhnik.entity.PriorityDoc;
 import org.malykhnik.service.FileService;
 import org.malykhnik.service.SearchEngine;
-import org.malykhnik.service.impl.ComparatorImpl;
 import org.malykhnik.service.impl.FileServiceImpl;
 import org.malykhnik.service.impl.SearchEngineImpl;
 
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         FileService fileService = new FileServiceImpl();
-        Scanner scanner = new Scanner(System.in);
-//        String fileData = scanner.nextLine();
-//        String inputFile = scanner.nextLine();
 
-        String fileData = "path-to-csv.csv";
-        String inputFile = "input-path-to-file.txt";
+        String fileData = "C:/Users/shere/IdeaProjects/TestTask2_Renue/data/test.csv";
+        String inputFile = "C:/Users/shere/IdeaProjects/TestTask2_Renue/temp/input1.txt";
 
         JsonAnswer jsonAnswer = new JsonAnswer();
         long startTime = System.currentTimeMillis();
@@ -31,8 +23,8 @@ public class Main {
             throw new RuntimeException("fileData name or inputFile name is Empty!");
         }
 
-        List<FileInfo> csv = fileService.readCsv("C:/Users/shere/IdeaProjects/TestTask2_Renue/src/main/resources/data-files/" + fileData);
-        List<String> queries = fileService.readQueries("C:/Users/shere/IdeaProjects/TestTask2_Renue/src/main/resources/input-files/" + inputFile);
+        List<FileInfo> csv = fileService.readCsv(fileData);
+        List<String> queries = fileService.readQueries(inputFile);
 
         long endTime = System.currentTimeMillis();
         jsonAnswer.setInitTime(endTime - startTime);

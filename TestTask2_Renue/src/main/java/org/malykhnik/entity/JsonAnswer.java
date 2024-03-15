@@ -1,6 +1,5 @@
 package org.malykhnik.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.malykhnik.dto.ResultDto;
 
