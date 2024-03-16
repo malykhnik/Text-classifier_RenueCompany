@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        FileService fileService = new FileServiceImpl();
+        long startTime = System.currentTimeMillis();
 
         String fileData = "";
         String inputFile = "";
@@ -37,8 +37,8 @@ public class Main {
         outputFile = outputFile.substring(1);
 
         JsonAnswer jsonAnswer = new JsonAnswer();
-        long startTime = System.currentTimeMillis();
 
+        FileService fileService = new FileServiceImpl();
         List<FileInfo> csv = fileService.readCsv(fileData);
         List<String> queries = fileService.readQueries(inputFile);
 
