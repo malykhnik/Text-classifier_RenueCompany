@@ -5,7 +5,7 @@ Test task №2 for "RenueCompany"
 
 PS: В структуре репозитория есть техническое задание.
 
-jar для заупска:
+jar для запуска:
 
 java -jar search.jar --data /data/test.csv --input-file /temp/input1.txt --output-file /temp/result1.json
 
